@@ -9,7 +9,10 @@ export default defineConfig(({ mode }) => {
   return {
     root: "src",
     base: "/",
-    plugins: [react(), svgr()],
+    plugins: [
+      react(),
+      svgr(),
+    ],
     publicDir: process.cwd() + "/public",
     resolve: {
       alias: {
@@ -19,23 +22,18 @@ export default defineConfig(({ mode }) => {
     server: {
       port: env.VITE_PORT ?? 3000,
       proxy: {
-        ...(env.VITE_BACKEND_URL && {
-          "/api/": {
-            target: env.VITE_BACKEND_URL,
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/api\//, ""),
-          },
-        }),
-        ...(env.VITE_STATIC_SERVER_URL && {
-          "/static/": {
-            target: env.VITE_STATIC_SERVER_URL,
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/static\//, ""),
-          },
-        }),
+        "/api/": {
+          target: env.VITE_BACKEND_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\//, ""),
+        },
+        "/static/": {
+          target: env.VITE_STATIC_SERVER_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/static\//, ""),
+        },
       },
     },
-
     envDir: process.cwd(),
     build: {
       outDir: process.cwd() + "/build",

@@ -9,11 +9,11 @@ var selectedFeatures = Array.from(new Set ([
 
 
 "Menu Page",
-"TraditionalMenu",
+"KidsMenu",
 
 
 "Menu Page",
-"KidsMenu",
+"TraditionalMenu",
 
 
 "Home",
